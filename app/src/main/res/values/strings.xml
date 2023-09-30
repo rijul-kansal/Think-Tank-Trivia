@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Think Tank Trivia</string>
+
+    // SplashScreenActivity2
+    <string name="Captial_T">T</string>
+
+    // Intro Screen
+    <string name="Intro_string">Intro Screen</string>
+    <string name="Intro_mainString">This app is a digital application that presents users with a series of questions on various topics, offering an interactive and often competitive way to test knowledge and have fun.</string>
+    <string name="Sign_in">Sign In</string>
+    <string name="Sign_up">Sign Up</string>
+
+    // Sign Up
+    <string name="Enter_your_name">Enter Your Name</string>
+    <string name="Enter_your_email">Enter Your Email</string>
+    <string name="Enter_your_password">Enter Your Password</string>
+    <string name="or">or</string>
+    <string name="already_have_an_account">Already have an account? </string>
+    <string name="Login">Login</string>
+</resources>

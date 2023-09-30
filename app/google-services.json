@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "436608640094",
+    "project_id": "think-tank-trivia",
+    "storage_bucket": "think-tank-trivia.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:436608640094:android:17e7f813ce35a4880580cf",
+        "android_client_info": {
+          "package_name": "com.example.thinktanktrivia"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNUOqmvbMLVZ2MF1jfhEtwQIs2NJVsEwM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
