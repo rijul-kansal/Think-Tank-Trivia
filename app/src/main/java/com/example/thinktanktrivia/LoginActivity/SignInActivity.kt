@@ -1,7 +1,10 @@
-package com.example.thinktanktrivia
+package com.example.thinktanktrivia.LoginActivity
 
 import android.content.Intent
 import android.os.Bundle
+import com.example.thinktanktrivia.Activity.BaseActivity
+import com.example.thinktanktrivia.Activity.MainActivity
+import com.example.thinktanktrivia.R
 import com.example.thinktanktrivia.databinding.ActivitySignInBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -16,6 +19,9 @@ class SignInActivity : BaseActivity() {
         setContentView(binding.root)
         SetUpToolbar()
         mAuth=FirebaseAuth.getInstance()
+        binding.SignUpBtn.setOnClickListener {
+            LoginNewUser()
+        }
     }
     private fun SetUpToolbar()
     {
@@ -28,9 +34,6 @@ class SignInActivity : BaseActivity() {
         }
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()
-        }
-        binding.SignUpBtn.setOnClickListener {
-           LoginNewUser()
         }
     }
     // login user code
@@ -68,7 +71,7 @@ class SignInActivity : BaseActivity() {
     private fun checkIfEmailVerified() {
         val user = FirebaseAuth.getInstance().currentUser
         if (user!!.isEmailVerified) {
-            startActivity(Intent(this@SignInActivity,MainActivity::class.java))
+            startActivity(Intent(this@SignInActivity, MainActivity::class.java))
             finish()
 
         } else {

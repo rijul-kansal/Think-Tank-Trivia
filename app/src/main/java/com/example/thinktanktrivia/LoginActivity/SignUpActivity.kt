@@ -1,14 +1,27 @@
-package com.example.thinktanktrivia
+package com.example.thinktanktrivia.LoginActivity
 
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.util.Patterns
+import com.example.thinktanktrivia.Activity.BaseActivity
+import com.example.thinktanktrivia.Activity.MainActivity
+import com.example.thinktanktrivia.R
 import com.example.thinktanktrivia.databinding.ActivitySignUpBinding
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.GoogleAuthProvider
 
 
-class SignUpActivity :BaseActivity() {
+class SignUpActivity : BaseActivity() {
     lateinit var binding:ActivitySignUpBinding
     // FireBase instance
     lateinit var mAuth:FirebaseAuth

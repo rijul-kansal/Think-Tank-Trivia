@@ -1,10 +1,11 @@
-package com.example.thinktanktrivia
+package com.example.thinktanktrivia.Activity
 
 import android.app.Activity
 import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import com.example.thinktanktrivia.R
 
 open class BaseActivity : AppCompatActivity() {
     lateinit var customDialog:Dialog

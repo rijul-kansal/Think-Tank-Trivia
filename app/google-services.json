@@ -12,7 +12,20 @@
           "package_name": "com.example.thinktanktrivia"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "436608640094-riulab71nlnc64ki9d4llch1ge2nrda0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.thinktanktrivia",
+            "certificate_hash": "9baa070c0d9a697c50120d0165b762d8e1853cac"
+          }
+        },
+        {
+          "client_id": "436608640094-9hlguhi0mej00fnrbd4okeq4dhlu8lr2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDNUOqmvbMLVZ2MF1jfhEtwQIs2NJVsEwM"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "436608640094-9hlguhi0mej00fnrbd4okeq4dhlu8lr2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

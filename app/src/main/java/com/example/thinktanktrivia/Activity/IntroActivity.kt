@@ -1,8 +1,11 @@
-package com.example.thinktanktrivia
+package com.example.thinktanktrivia.Activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.thinktanktrivia.R
+import com.example.thinktanktrivia.LoginActivity.SignInActivity
+import com.example.thinktanktrivia.LoginActivity.SignUpActivity
 import com.example.thinktanktrivia.databinding.ActivityIntroBinding
 
 class IntroActivity : AppCompatActivity() {
@@ -14,10 +17,10 @@ class IntroActivity : AppCompatActivity() {
 
         SetUpToolbar()
         binding.SignIn.setOnClickListener {
-            startActivity(Intent(this,SignInActivity::class.java))
+            startActivity(Intent(this, SignInActivity::class.java))
         }
         binding.SignUp.setOnClickListener {
-            startActivity(Intent(this,SignUpActivity::class.java))
+            startActivity(Intent(this, SignUpActivity::class.java))
         }
     }
     // code for setting own toolbar

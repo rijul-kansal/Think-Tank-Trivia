@@ -1,10 +1,11 @@
-package com.example.thinktanktrivia
+package com.example.thinktanktrivia.Activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
+import com.example.thinktanktrivia.R
 
 class SplashScreen1 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,7 +19,7 @@ class SplashScreen1 : AppCompatActivity() {
 
         // Code For Delay on this activity for 1.5 second
         Handler().postDelayed({
-            startActivity(Intent(this,SplashScreen2::class.java))
+            startActivity(Intent(this, SplashScreen2::class.java))
             finish()
         }, 1500)
     }

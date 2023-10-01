@@ -1,10 +1,11 @@
-package com.example.thinktanktrivia
+package com.example.thinktanktrivia.Activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
+import com.example.thinktanktrivia.R
 import com.google.firebase.auth.FirebaseAuth
 
 class SplashScreen2 : AppCompatActivity() {
@@ -32,7 +33,7 @@ class SplashScreen2 : AppCompatActivity() {
                  if(user.uid.isNotEmpty()) {
                      startActivity(Intent(this, MainActivity::class.java))
                  }else {
-                     startActivity(Intent(this,IntroActivity::class.java))
+                     startActivity(Intent(this, IntroActivity::class.java))
                  }
             } else {
                 startActivity(Intent(this, IntroActivity::class.java))

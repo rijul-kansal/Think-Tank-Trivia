@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/ic_background"
-    tools:context=".SignUpActivity">
+    tools:context=".LoginActivity.SignUpActivity">
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_bar_size">
@@ -142,6 +142,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_weight="1"
+            android:id="@+id/circular_img_phone"
+            android:layout_width="@dimen/circular_img_width"
+            android:layout_height="@dimen/circular_img_height"
+            android:src="@drawable/phone_icon" />
         <de.hdodenhof.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_weight="1"
