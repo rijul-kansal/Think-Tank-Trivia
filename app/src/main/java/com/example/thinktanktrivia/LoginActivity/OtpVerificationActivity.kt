@@ -3,8 +3,11 @@ package com.example.thinktanktrivia.LoginActivity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import com.example.thinktanktrivia.Activity.BaseActivity
 import com.example.thinktanktrivia.Activity.MainActivity
+import com.example.thinktanktrivia.FireBase.FireStoreClass
+import com.example.thinktanktrivia.Model.User
 import com.example.thinktanktrivia.R
 import com.example.thinktanktrivia.databinding.ActivityOtpVerificationBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -15,7 +18,9 @@ import java.util.Timer
 import java.util.TimerTask
 
 class OtpVerificationActivity : BaseActivity() {
+    // used to carry current mobile no
     lateinit var phoneNumber: String
+    // TODO we will implement later
     var timeoutSeconds = 60L
     lateinit var verificationCode: String
     var mAuth = FirebaseAuth.getInstance()
@@ -27,7 +32,7 @@ class OtpVerificationActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         SetUpToolbar()
-        startResendTimer()
+//        startResendTimer()
         if(intent.hasExtra("phoneNo"))
         {
             phoneNumber= intent.getStringExtra("phoneNo").toString()
@@ -40,6 +45,7 @@ class OtpVerificationActivity : BaseActivity() {
             val credential = PhoneAuthProvider.getCredential(verificationCode!!, enteredOtp)
             signIn(credential)
         }
+        binding.resend.visibility= View.GONE
     }
     private fun SetUpToolbar() {
         setSupportActionBar(binding.toolbar)
@@ -53,12 +59,15 @@ class OtpVerificationActivity : BaseActivity() {
             onBackPressed()
         }
     }
+    // this will match otp and credential and if matches then put us on main activity
     fun signIn(phoneAuthCredential: PhoneAuthCredential?) {
         //login and go to next activity
        showProgressBar(this@OtpVerificationActivity," ")
         mAuth.signInWithCredential(phoneAuthCredential!!).addOnCompleteListener { task ->
             cancelProgressBar()
             if (task.isSuccessful) {
+                val user= User(id=mAuth.currentUser!!.uid, mobileNo = phoneNumber)
+                FireStoreClass().AddUserToFireBase(user)
                 val intent = Intent(this@OtpVerificationActivity, MainActivity::class.java)
                 intent.putExtra("phone", phoneNumber)
                 startActivity(intent)
@@ -67,20 +76,20 @@ class OtpVerificationActivity : BaseActivity() {
             }
         }
     }
-
-    fun startResendTimer() {
-        binding.resend.setEnabled(false)
-        val timer = Timer()
-        timer.scheduleAtFixedRate(object : TimerTask() {
-            override fun run() {
-                timeoutSeconds--
-                binding.resend.setText("Resend OTP in $timeoutSeconds seconds")
-                if (timeoutSeconds <= 0) {
-                    timeoutSeconds = 60L
-                    timer.cancel()
-                    runOnUiThread {binding.resend.setEnabled(true) }
-                }
-            }
-        }, 0, 1000)
-    }
+      // TODO implement later
+//    fun startResendTimer() {
+//        binding.resend.setEnabled(false)
+//        val timer = Timer()
+//        timer.scheduleAtFixedRate(object : TimerTask() {
+//            override fun run() {
+//                timeoutSeconds--
+//                binding.resend.setText("Resend OTP in $timeoutSeconds seconds")
+//                if (timeoutSeconds <= 0) {
+//                    timeoutSeconds = 60L
+//                    timer.cancel()
+//                    runOnUiThread {binding.resend.setEnabled(true) }
+//                }
+//            }
+//        }, 0, 1000)
+//    }
 }

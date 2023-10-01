@@ -7,6 +7,8 @@ import android.util.Log
 import android.util.Patterns
 import com.example.thinktanktrivia.Activity.BaseActivity
 import com.example.thinktanktrivia.Activity.MainActivity
+import com.example.thinktanktrivia.FireBase.FireStoreClass
+import com.example.thinktanktrivia.Model.User
 import com.example.thinktanktrivia.R
 import com.example.thinktanktrivia.databinding.ActivitySignUpBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -43,6 +45,11 @@ class SignUpActivity : BaseActivity() {
 
         binding.circularImgPhone.setOnClickListener {
             startActivity(Intent(this,MobileVerificationActivity::class.java))
+        }
+
+        binding.LoginBtn.setOnClickListener {
+            startActivity(Intent(this,SignInActivity::class.java))
+            finish()
         }
     }
 
@@ -91,12 +98,17 @@ class SignUpActivity : BaseActivity() {
             Toast(this@SignUpActivity,"Please Enter valid Email address")
             return
         }
+
         //Registering User
         mAuth
             .createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
+                    val user= mAuth.currentUser?.let { User(name=name,id= it.uid,email=email) }
                     // is Successfully Reg then send email verification link
+                    if (user != null) {
+                        FireStoreClass().AddUserToFireBase(user)
+                    }
                     sendVerificationEmail()
                     Toast(this@SignUpActivity,"Registered Successfully")
                     // hide the progress bar
@@ -154,8 +166,12 @@ class SignUpActivity : BaseActivity() {
             .addOnCompleteListener(this) { task ->
                 cancelProgressBar()
                 if (task.isSuccessful) {
-                    val user = mAuth.currentUser
-                    Toast(this, "Signed in as ${user?.displayName}")
+                    val user= mAuth.currentUser?.let { mAuth.currentUser!!.displayName?.let { it1 -> mAuth.currentUser!!.email?.let { it2 -> User(name= it1,id= it.uid,email= it2) } } }
+                    // is Successfully Reg then send email verification link
+                    if (user != null) {
+                        FireStoreClass().AddUserToFireBase(user)
+                    }
+//                    Toast(this, "Signed in as ${user?.displayName}")
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 } else {

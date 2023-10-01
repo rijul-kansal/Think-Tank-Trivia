@@ -176,6 +176,7 @@
             android:textSize="@dimen/textsize_last1"
             android:textColor="#6c757d"/>
         <TextView
+            android:id="@+id/Login_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Login"

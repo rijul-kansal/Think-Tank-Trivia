@@ -17,9 +17,13 @@ import java.util.concurrent.TimeUnit
 
 
 class MobileVerificationActivity : BaseActivity() {
+    // used to get current phone No
     lateinit var phoneNumber: String
+    // after how much time opt will be invalid
     var timeoutSeconds = 60L
+    // verification code for otp
     var verificationCode: String? = null
+    // helps in resending otp
     var resendingToken: ForceResendingToken? = null
     var mAuth = FirebaseAuth.getInstance()
     lateinit var binding:ActivityMobileVerificationBinding
@@ -34,6 +38,7 @@ class MobileVerificationActivity : BaseActivity() {
             sendOtp()
         }
     }
+
     private fun SetUpToolbar() {
         setSupportActionBar(binding.toolbar)
         if (supportActionBar != null) {
@@ -46,6 +51,7 @@ class MobileVerificationActivity : BaseActivity() {
             onBackPressed()
         }
     }
+    // this fn will send the otp and put us on next activity for the first time
     fun sendOtp() {
         phoneNumber =binding.etPhoneNo.text.toString()
         if(phoneNumber!!.isEmpty())
