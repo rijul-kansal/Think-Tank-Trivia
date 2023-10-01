@@ -3,8 +3,10 @@ package com.example.thinktanktrivia.LoginActivity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import com.example.thinktanktrivia.Activity.BaseActivity
 import com.example.thinktanktrivia.R
+import com.example.thinktanktrivia.Utils.Constants
 import com.example.thinktanktrivia.databinding.ActivityMobileVerificationBinding
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
@@ -27,6 +29,8 @@ class MobileVerificationActivity : BaseActivity() {
     var resendingToken: ForceResendingToken? = null
     var mAuth = FirebaseAuth.getInstance()
     lateinit var binding:ActivityMobileVerificationBinding
+
+    var identification_no=0
     override fun onCreate(savedInstanceState: Bundle?) {
         binding= ActivityMobileVerificationBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
@@ -36,6 +40,14 @@ class MobileVerificationActivity : BaseActivity() {
 
         binding.SignUpBtn.setOnClickListener {
             sendOtp()
+        }
+
+        identification_no=intent.getIntExtra(Constants.USER_SIGN_IN_MOBILE_VERIFICATION,0)
+        if(identification_no==1)
+        {
+            binding.etName.visibility= View.GONE
+            binding.toolbar.title=resources.getString(R.string.Sign_in)
+            binding.SignUpBtn.text=resources.getString(R.string.Sign_in)
         }
     }
 
@@ -81,8 +93,11 @@ class MobileVerificationActivity : BaseActivity() {
                     resendingToken = forceResendingToken
                     Toast(this@MobileVerificationActivity,"Opt Send Successfully")
                     var intent=Intent(this@MobileVerificationActivity,OtpVerificationActivity::class.java)
-                    intent.putExtra("phoneNo",phoneNumber)
-                    intent.putExtra("verificationCode",verificationCode)
+                    intent.putExtra(Constants.PHONE_NO,phoneNumber)
+                    intent.putExtra(Constants.VERIFICATION_CODE,verificationCode)
+                    Log.d("Main" ,"IdentificationNo1 ${identification_no}")
+                    if(identification_no==1)
+                    intent.putExtra(Constants.USER_SIGN_IN_MOBILE_VERIFICATION_OTP,2)
                     startActivity(intent)
                     finish()
                     cancelProgressBar()

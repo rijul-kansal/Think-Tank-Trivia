@@ -9,6 +9,7 @@ import com.example.thinktanktrivia.Activity.MainActivity
 import com.example.thinktanktrivia.FireBase.FireStoreClass
 import com.example.thinktanktrivia.Model.User
 import com.example.thinktanktrivia.R
+import com.example.thinktanktrivia.Utils.Constants
 import com.example.thinktanktrivia.databinding.ActivityOtpVerificationBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
@@ -25,7 +26,7 @@ class OtpVerificationActivity : BaseActivity() {
     lateinit var verificationCode: String
     var mAuth = FirebaseAuth.getInstance()
 
-
+    var identificationNo=0
     lateinit var binding:ActivityOtpVerificationBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         binding= ActivityOtpVerificationBinding.inflate(layoutInflater)
@@ -38,6 +39,12 @@ class OtpVerificationActivity : BaseActivity() {
             phoneNumber= intent.getStringExtra("phoneNo").toString()
             verificationCode=intent.getStringExtra("verificationCode").toString()
             Log.d("Main","Phone No ${phoneNumber}  ${verificationCode}")
+            identificationNo=intent.getIntExtra(Constants.USER_SIGN_IN_MOBILE_VERIFICATION_OTP,0)
+            if(identificationNo==12)
+            {
+                binding.toolbar.title=resources.getString(R.string.Sign_in)
+                binding.SignUpBtnOtp.text=resources.getString(R.string.Sign_in)
+            }
         }
 
         binding.SignUpBtnOtp.setOnClickListener {
@@ -66,8 +73,11 @@ class OtpVerificationActivity : BaseActivity() {
         mAuth.signInWithCredential(phoneAuthCredential!!).addOnCompleteListener { task ->
             cancelProgressBar()
             if (task.isSuccessful) {
-                val user= User(id=mAuth.currentUser!!.uid, mobileNo = phoneNumber)
-                FireStoreClass().AddUserToFireBase(user)
+                Log.d("Main" ,"IdentificationNo2 ${identificationNo}")
+                if(identificationNo==0) {
+                    val user = User(id = mAuth.currentUser!!.uid, mobileNo = phoneNumber)
+                    FireStoreClass().AddUserToFireBase(user)
+                }
                 val intent = Intent(this@OtpVerificationActivity, MainActivity::class.java)
                 intent.putExtra("phone", phoneNumber)
                 startActivity(intent)

@@ -2,17 +2,28 @@ package com.example.thinktanktrivia.LoginActivity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import com.example.thinktanktrivia.Activity.BaseActivity
 import com.example.thinktanktrivia.Activity.MainActivity
 import com.example.thinktanktrivia.R
+import com.example.thinktanktrivia.Utils.Constants
 import com.example.thinktanktrivia.databinding.ActivitySignInBinding
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 
 
 class SignInActivity : BaseActivity() {
     lateinit var binding:ActivitySignInBinding
     // Firebase instance
     lateinit var mAuth:FirebaseAuth
+
+    companion object
+    {
+        private val SIGN_IN_CODE=100
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         binding= ActivitySignInBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
@@ -21,6 +32,17 @@ class SignInActivity : BaseActivity() {
         mAuth=FirebaseAuth.getInstance()
         binding.SignUpBtn.setOnClickListener {
             LoginNewUser()
+        }
+
+        binding.circularImageGoogle.setOnClickListener {
+            signIn()
+        }
+
+        binding.circularImgPhone.setOnClickListener {
+            val intent=Intent(this,MobileVerificationActivity::class.java)
+            intent.putExtra(Constants.USER_SIGN_IN_MOBILE_VERIFICATION,1)
+            startActivity(intent)
+            finish()
         }
     }
     private fun SetUpToolbar()
@@ -77,5 +99,40 @@ class SignInActivity : BaseActivity() {
         } else {
             FirebaseAuth.getInstance().signOut()
         }
+    }
+    private fun signIn() {
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+        val googleSignInClient = GoogleSignIn.getClient(this, gso)
+        val signInIntent = googleSignInClient.signInIntent
+        startActivityForResult(signInIntent, SIGN_IN_CODE)
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        showProgressBar(this@SignInActivity," ")
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == SIGN_IN_CODE) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                val account = task.getResult(ApiException::class.java)
+                firebaseAuthWithGoogle(account.idToken!!)
+            } catch (e: ApiException) {
+                Log.d("Main","Failed ${e.message}")
+            }
+        }
+    }
+    private fun firebaseAuthWithGoogle(idToken: String) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        mAuth.signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
+                cancelProgressBar()
+                if (task.isSuccessful) {
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
+                } else {
+                    Toast(this, "Authentication failed")
+                }
+            }
     }
 }

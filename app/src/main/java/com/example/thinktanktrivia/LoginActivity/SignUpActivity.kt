@@ -28,7 +28,7 @@ class SignUpActivity : BaseActivity() {
     // FireBase instance
     lateinit var mAuth:FirebaseAuth
     companion object {
-        private const val RC_SIGN_IN = 9001
+        const val RC_SIGN_IN = 9001
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         binding= ActivitySignUpBinding.inflate(layoutInflater)

@@ -91,4 +91,58 @@
                 android:layout_marginRight="@dimen/Sign_margin_right"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+    <LinearLayout
+        android:gravity="center"
+        android:layout_marginTop="@dimen/linear_layout_margin_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <View
+            android:layout_width="@dimen/view_width"
+            android:layout_height="@dimen/view_height"
+            android:background="@color/black"
+            android:layout_marginLeft="@dimen/view_margin_left1"
+            android:layout_marginRight="@dimen/view_margin_right1"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/or"
+            android:textColor="@color/black"
+            android:textSize="@dimen/editView_textSize"
+            android:textStyle="bold"/>
+        <View
+            android:layout_width="@dimen/view_width"
+            android:layout_height="@dimen/view_height"
+            android:layout_marginLeft="@dimen/view_margin_left2"
+            android:layout_marginRight="@dimen/view_margin_right2"
+            android:background="@color/black"/>
+    </LinearLayout>
+    <LinearLayout
+        android:gravity="center"
+        android:layout_marginTop="@dimen/linear_layout_margin_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_weight="1"
+            android:id="@+id/circular_img_phone"
+            android:layout_width="@dimen/circular_img_width"
+            android:layout_height="@dimen/circular_img_height"
+            android:src="@drawable/phone_icon" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_weight="1"
+            android:id="@+id/circular_img_facebook"
+            android:layout_width="@dimen/circular_img_width"
+            android:layout_height="@dimen/circular_img_height"
+            android:src="@drawable/facebook" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_weight="1"
+            android:id="@+id/circular_image_google"
+            android:layout_width="@dimen/circular_img_width2"
+            android:layout_height="@dimen/circular_img_height2"
+            android:src="@drawable/google_icon"/>
+    </LinearLayout>
 </LinearLayout>
