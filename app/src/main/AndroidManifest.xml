@@ -15,6 +15,12 @@
         android:theme="@style/Theme.ThinkTankTrivia"
         tools:targetApi="31">
         <activity
+            android:name=".LoginActivity.OtpVerificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity.MobileVerificationActivity"
+            android:exported="false" />
+        <activity
             android:name=".LoginActivity.GoogleSignInActivity"
             android:exported="false" />
         <activity

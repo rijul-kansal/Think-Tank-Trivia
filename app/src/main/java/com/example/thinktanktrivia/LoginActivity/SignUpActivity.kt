@@ -25,6 +25,9 @@ class SignUpActivity : BaseActivity() {
     lateinit var binding:ActivitySignUpBinding
     // FireBase instance
     lateinit var mAuth:FirebaseAuth
+    companion object {
+        private const val RC_SIGN_IN = 9001
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         binding= ActivitySignUpBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
@@ -36,7 +39,11 @@ class SignUpActivity : BaseActivity() {
         binding.SignUpBtn.setOnClickListener {
             registerNewUser()
         }
+        binding.circularImageGoogle.setOnClickListener { signIn() }
 
+        binding.circularImgPhone.setOnClickListener {
+            startActivity(Intent(this,MobileVerificationActivity::class.java))
+        }
     }
 
     // code for setting up toolbar
@@ -116,6 +123,43 @@ class SignUpActivity : BaseActivity() {
                     finish()
                     overridePendingTransition(0, 0)
                     startActivity(intent)
+                }
+            }
+    }
+    private fun signIn() {
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+        val googleSignInClient = GoogleSignIn.getClient(this, gso)
+        val signInIntent = googleSignInClient.signInIntent
+        startActivityForResult(signInIntent, RC_SIGN_IN)
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        showProgressBar(this@SignUpActivity," ")
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == RC_SIGN_IN) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                val account = task.getResult(ApiException::class.java)
+                firebaseAuthWithGoogle(account.idToken!!)
+            } catch (e: ApiException) {
+                Log.d("Main","Failed ${e.message}")
+            }
+        }
+    }
+    private fun firebaseAuthWithGoogle(idToken: String) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        mAuth.signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
+                cancelProgressBar()
+                if (task.isSuccessful) {
+                    val user = mAuth.currentUser
+                    Toast(this, "Signed in as ${user?.displayName}")
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
+                } else {
+                    Toast(this, "Authentication failed")
                 }
             }
     }
