@@ -21,8 +21,9 @@ import java.util.TimerTask
 class OtpVerificationActivity : BaseActivity() {
     // used to carry current mobile no
     lateinit var phoneNumber: String
+    lateinit var name:String
     // TODO we will implement later
-    var timeoutSeconds = 60L
+//    var timeoutSeconds = 60L
     lateinit var verificationCode: String
     var mAuth = FirebaseAuth.getInstance()
 
@@ -38,6 +39,7 @@ class OtpVerificationActivity : BaseActivity() {
         {
             phoneNumber= intent.getStringExtra("phoneNo").toString()
             verificationCode=intent.getStringExtra("verificationCode").toString()
+            name=intent.getStringExtra(Constants.NAME_INTENT).toString()
             Log.d("Main","Phone No ${phoneNumber}  ${verificationCode}")
             identificationNo=intent.getIntExtra(Constants.USER_SIGN_IN_MOBILE_VERIFICATION_OTP,0)
             if(identificationNo==12)
@@ -75,7 +77,7 @@ class OtpVerificationActivity : BaseActivity() {
             if (task.isSuccessful) {
                 Log.d("Main" ,"IdentificationNo2 ${identificationNo}")
                 if(identificationNo==0) {
-                    val user = User(id = mAuth.currentUser!!.uid, mobileNo = phoneNumber)
+                    val user = User(id = mAuth.currentUser!!.uid, mobileNo = phoneNumber,name=name)
                     FireStoreClass().AddUserToFireBase(user)
                 }
                 val intent = Intent(this@OtpVerificationActivity, MainActivity::class.java)

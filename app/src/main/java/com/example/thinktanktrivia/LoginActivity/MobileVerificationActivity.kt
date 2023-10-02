@@ -71,6 +71,11 @@ class MobileVerificationActivity : BaseActivity() {
             Toast(this@MobileVerificationActivity,"Please Enter Your Mobile No")
             return
         }
+        if(binding.etName.text!!.isEmpty() && identification_no==0)
+        {
+            Toast(this@MobileVerificationActivity,"Please Enter Your Name")
+            return
+        }
         showProgressBar(this@MobileVerificationActivity," ")
         val builder = PhoneAuthOptions.newBuilder(mAuth)
             .setPhoneNumber(phoneNumber!!)
@@ -95,6 +100,7 @@ class MobileVerificationActivity : BaseActivity() {
                     var intent=Intent(this@MobileVerificationActivity,OtpVerificationActivity::class.java)
                     intent.putExtra(Constants.PHONE_NO,phoneNumber)
                     intent.putExtra(Constants.VERIFICATION_CODE,verificationCode)
+                    intent.putExtra(Constants.NAME_INTENT,binding.etName.text.toString())
                     Log.d("Main" ,"IdentificationNo1 ${identification_no}")
                     if(identification_no==1)
                     intent.putExtra(Constants.USER_SIGN_IN_MOBILE_VERIFICATION_OTP,2)

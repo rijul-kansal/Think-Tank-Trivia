@@ -22,4 +22,7 @@
     <string name="default_web_client_id">436608640094-9hlguhi0mej00fnrbd4okeq4dhlu8lr2.apps.googleusercontent.com</string>
     <string name="resend_otp">Resend otp in 10 sec</string>
 
+    <string name="nav_header_text">Your Name</string>
+    <string name="Update">Update</string>
+
 </resources>

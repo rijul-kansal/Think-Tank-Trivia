@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+     <group>
+        <item
+            android:id="@+id/nav_update"
+            android:icon="@drawable/baseline_mode_edit_24"
+            android:title="Update Profile"/>
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/baseline_logout_24"
+            android:title="Sign Out"/>
+    </group>
+</menu>
