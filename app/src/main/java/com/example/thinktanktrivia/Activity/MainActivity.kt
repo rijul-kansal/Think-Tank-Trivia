@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+    // setting toolbar and navigation drawer
     lateinit var toolbar: Toolbar
     lateinit var drawerLayout: DrawerLayout
     lateinit var navView: NavigationView
@@ -40,6 +41,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navView.setNavigationItemSelectedListener(this)
 
         FireStoreClass().RetrieveDataFromFireBase(this)
+
+        var letsplay=findViewById<TextView>(R.id.letsPlay)
+        letsplay.setOnClickListener {
+            startActivity(Intent(this,QuestionTypeChooserActivity::class.java))
+        }
     }
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -56,7 +62,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
-
+    // update profile
     fun updateUserProfileInNavHeader(user :User)
     {
 
@@ -71,7 +77,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             .placeholder(R.drawable.baseline_logout_24)
             .into(hView.findViewById(R.id.profile_image))
     }
-
+    // if updated from update activity then update here also
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK) {

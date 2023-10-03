@@ -1,4 +1,5 @@
-package com.example.thinktanktrivia.Activity
+/* or Reusing Fn */
+package com.example.thinktanktrivia.Utils
 
 import android.app.Activity
 import android.app.Dialog
@@ -13,6 +14,7 @@ open class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_base)
     }
+    // Code For showing ProgressBar
     fun showProgressBar(activity: Activity, message :String)
     {
         customDialog= Dialog(activity)
@@ -21,10 +23,12 @@ open class BaseActivity : AppCompatActivity() {
         tv.text=message
         customDialog.show()
     }
+    // Code for cancelling progrtess bar
     fun cancelProgressBar()
     {
         customDialog.cancel()
     }
+    // Code for displaying Toast
     fun Toast(activity: Activity,message: String)
     {
         android.widget.Toast.makeText(activity,message, android.widget.Toast.LENGTH_LONG).show()

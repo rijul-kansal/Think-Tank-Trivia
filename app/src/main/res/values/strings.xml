@@ -24,5 +24,34 @@
 
     <string name="nav_header_text">Your Name</string>
     <string name="Update">Update</string>
+    
+    <string name="LetsPlay">Let\'s Play</string>
+
+
+
+    <string name="GK">GK</string>
+    <string name="Books">Books</string>
+    <string name="Film">Film</string>
+    <string name="Music">Music</string>
+    <string name="Musical_Theaters">Musical Theaters</string>
+    <string name="Television">Television</string>
+    <string name="Video_Games">Video Games</string>
+    <string name="Board_Games">Board_Games</string>
+    <string name="Nature">Nature</string>
+    <string name="Computers">Coumpters</string>
+    <string name="Mathematics">Mathematics</string>
+    <string name="Mythlogy">Mythlogy</string>
+    <string name="Sports">Sports</string>
+    <string name="Geography">Geography</string>
+    <string name="History">History</string>
+    <string name="Polities">Polities</string>
+    <string name="Art">Art</string>
+    <string name="Celeb">Celeb</string>
+    <string name="Animals">Animals</string>
+    <string name="Vehicles">Vehicles</string>
+    <string name="Comics">Comics</string>
+    <string name="Gadegets">Gadgets</string>
+    <string name="JapAAM">Anime and Manga</string>
+    <string name="Cartton">Cartoon</string>
 
 </resources>

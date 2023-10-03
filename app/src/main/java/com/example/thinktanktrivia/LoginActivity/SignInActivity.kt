@@ -3,7 +3,7 @@ package com.example.thinktanktrivia.LoginActivity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import com.example.thinktanktrivia.Activity.BaseActivity
+import com.example.thinktanktrivia.Utils.BaseActivity
 import com.example.thinktanktrivia.Activity.MainActivity
 import com.example.thinktanktrivia.R
 import com.example.thinktanktrivia.Utils.Constants
@@ -100,6 +100,7 @@ class SignInActivity : BaseActivity() {
             FirebaseAuth.getInstance().signOut()
         }
     }
+    // sign in using Google  rsst all 3 fn
     private fun signIn() {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))

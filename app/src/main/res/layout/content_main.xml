@@ -20,11 +20,20 @@
     <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-        android:background="@color/white"
+    android:background="@color/white"
     android:orientation="vertical">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="This is my content area."/>
+        <TextView
+            android:id="@+id/letsPlay"
+            android:background="@drawable/sign_in_btn_bg"
+            android:layout_marginLeft="@dimen/btn_margin"
+            android:layout_marginRight="@dimen/btn_margin"
+            android:padding="@dimen/btn_padding"
+            android:layout_marginTop="@dimen/btn_margin_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/LetsPlay"
+            android:textColor="@color/black"
+            android:textSize="@dimen/Sign_btn_textSize"
+            android:textStyle="bold" />
     </LinearLayout>
 </LinearLayout>

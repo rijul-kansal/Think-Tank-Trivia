@@ -1,7 +1,6 @@
 package com.example.thinktanktrivia.Activity
 
 import android.Manifest
-import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -18,6 +17,7 @@ import com.bumptech.glide.Glide
 import com.example.thinktanktrivia.FireBase.FireStoreClass
 import com.example.thinktanktrivia.Model.User
 import com.example.thinktanktrivia.R
+import com.example.thinktanktrivia.Utils.BaseActivity
 import com.example.thinktanktrivia.Utils.Constants
 import com.example.thinktanktrivia.databinding.ActivityUpdateProfileBinding
 import com.google.firebase.storage.FirebaseStorage
@@ -27,12 +27,16 @@ import java.util.UUID
 
 class UpdateProfileActivity : BaseActivity() {
     lateinit var binding:ActivityUpdateProfileBinding
+    // sending req for first time
     var flag=0
+    // uri that we got from gallery
     var mImgUri: Uri?=null
+    // uri in form of string that we gewt from firebase storage
     var mProfileImage: String?=null
+    // storage instaance
     var storage: FirebaseStorage? = null
     var storageReference: StorageReference? = null
-
+   // user model class instance
     lateinit var mUser:User
     override fun onCreate(savedInstanceState: Bundle?) {
         binding= ActivityUpdateProfileBinding.inflate(layoutInflater)
@@ -47,6 +51,7 @@ class UpdateProfileActivity : BaseActivity() {
         storageReference = storage!!.getReference()
 
         binding.SignUpBtn.setOnClickListener {
+            // udate data on main activity also
             setResult(RESULT_OK)
             if(mImgUri!=null)
             uploadImage()
@@ -68,6 +73,7 @@ class UpdateProfileActivity : BaseActivity() {
             onBackPressed()
         }
     }
+    // first it will check if permission is granted or not is not then show dialog
     private fun askingForPermission(code: Int) {
         if (flag == 0) {
             flag = 1
@@ -94,12 +100,14 @@ class UpdateProfileActivity : BaseActivity() {
             }
         }
     }
+    // check if permission is granted code
     private fun checkPersmission(): Boolean {
         return (ContextCompat.checkSelfPermission(
             this,
             Manifest.permission.READ_MEDIA_IMAGES
         ) == PackageManager.PERMISSION_GRANTED)
     }
+    // else req permission
     private fun requestPermission() {
         ActivityCompat.requestPermissions(this@UpdateProfileActivity ,permissions(), 1)
 
@@ -119,6 +127,7 @@ class UpdateProfileActivity : BaseActivity() {
             storagePermissions
         }
     }
+    // if successfull we get image for gallery then update it with the profile pic
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK) {
@@ -133,7 +142,7 @@ class UpdateProfileActivity : BaseActivity() {
             }
         }
     }
-
+    // upload image to firebase storage
     private fun uploadImage()
     {
         if (mImgUri != null)
@@ -163,7 +172,7 @@ class UpdateProfileActivity : BaseActivity() {
 
         }
     }
-
+    // when we went to update profile activity then we need previous data
     fun PopulatingData(user:User)
     {
         mUser=user
@@ -177,7 +186,7 @@ class UpdateProfileActivity : BaseActivity() {
         binding.etEmail.setText(user.email)
         binding.etMobileNo.setText(user.mobileNo)
     }
-
+    // if user changes some data then update back to fire store
     fun UpdataDataToFireStore()
     {
         showProgressBar(this@UpdateProfileActivity," ")

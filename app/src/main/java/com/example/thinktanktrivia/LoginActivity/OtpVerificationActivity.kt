@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import com.example.thinktanktrivia.Activity.BaseActivity
+import com.example.thinktanktrivia.Utils.BaseActivity
 import com.example.thinktanktrivia.Activity.MainActivity
 import com.example.thinktanktrivia.FireBase.FireStoreClass
 import com.example.thinktanktrivia.Model.User
@@ -14,9 +14,6 @@ import com.example.thinktanktrivia.databinding.ActivityOtpVerificationBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
-import com.google.firebase.auth.PhoneAuthProvider.ForceResendingToken
-import java.util.Timer
-import java.util.TimerTask
 
 class OtpVerificationActivity : BaseActivity() {
     // used to carry current mobile no
@@ -26,7 +23,7 @@ class OtpVerificationActivity : BaseActivity() {
 //    var timeoutSeconds = 60L
     lateinit var verificationCode: String
     var mAuth = FirebaseAuth.getInstance()
-
+    // checking from which activity it is comming
     var identificationNo=0
     lateinit var binding:ActivityOtpVerificationBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +32,7 @@ class OtpVerificationActivity : BaseActivity() {
         setContentView(binding.root)
         SetUpToolbar()
 //        startResendTimer()
+        // getting data from previous activity
         if(intent.hasExtra("phoneNo"))
         {
             phoneNumber= intent.getStringExtra("phoneNo").toString()
@@ -48,12 +46,13 @@ class OtpVerificationActivity : BaseActivity() {
                 binding.SignUpBtnOtp.text=resources.getString(R.string.Sign_in)
             }
         }
-
+        // getting and checking otp
         binding.SignUpBtnOtp.setOnClickListener {
             val enteredOtp: String = binding.pinview.text.toString()
             val credential = PhoneAuthProvider.getCredential(verificationCode!!, enteredOtp)
             signIn(credential)
         }
+        // implement later
         binding.resend.visibility= View.GONE
     }
     private fun SetUpToolbar() {

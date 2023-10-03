@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import com.example.thinktanktrivia.Activity.BaseActivity
+import com.example.thinktanktrivia.Utils.BaseActivity
 import com.example.thinktanktrivia.R
 import com.example.thinktanktrivia.Utils.Constants
 import com.example.thinktanktrivia.databinding.ActivityMobileVerificationBinding
@@ -29,7 +29,7 @@ class MobileVerificationActivity : BaseActivity() {
     var resendingToken: ForceResendingToken? = null
     var mAuth = FirebaseAuth.getInstance()
     lateinit var binding:ActivityMobileVerificationBinding
-
+    // used to check from which activity it is comming like from sign up or sign in
     var identification_no=0
     override fun onCreate(savedInstanceState: Bundle?) {
         binding= ActivityMobileVerificationBinding.inflate(layoutInflater)
@@ -41,7 +41,7 @@ class MobileVerificationActivity : BaseActivity() {
         binding.SignUpBtn.setOnClickListener {
             sendOtp()
         }
-
+         // if comming from sign in activity then no need of name and change toolbar title as sign in and same for btn
         identification_no=intent.getIntExtra(Constants.USER_SIGN_IN_MOBILE_VERIFICATION,0)
         if(identification_no==1)
         {
@@ -65,6 +65,7 @@ class MobileVerificationActivity : BaseActivity() {
     }
     // this fn will send the otp and put us on next activity for the first time
     fun sendOtp() {
+        // checking if mobile no and name are empty or not
         phoneNumber =binding.etPhoneNo.text.toString()
         if(phoneNumber!!.isEmpty())
         {
@@ -76,6 +77,7 @@ class MobileVerificationActivity : BaseActivity() {
             Toast(this@MobileVerificationActivity,"Please Enter Your Name")
             return
         }
+        // if not then proceed futher
         showProgressBar(this@MobileVerificationActivity," ")
         val builder = PhoneAuthOptions.newBuilder(mAuth)
             .setPhoneNumber(phoneNumber!!)

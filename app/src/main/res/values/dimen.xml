@@ -53,4 +53,10 @@
         <dimen name="nav_header_padding">15dp</dimen>
         <dimen name="nav_header_image_size">96dp</dimen>
         <dimen name="nav_header_image_border_width">2dp</dimen>
+
+        // Main Activity
+        <dimen name="btn_margin">16dp</dimen>
+        <dimen name="btn_padding">16dp</dimen>
+        <dimen name="btn_margin_top">630dp</dimen>
+        <dimen name="btn_textSize">32dp</dimen>
 </resources>

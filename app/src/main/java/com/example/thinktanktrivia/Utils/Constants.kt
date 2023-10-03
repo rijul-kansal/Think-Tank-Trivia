@@ -1,6 +1,10 @@
 package com.example.thinktanktrivia.Utils
 
+import android.view.Display.Mode
+import com.example.thinktanktrivia.Model.CatogeryModel
+
 object Constants {
+    // Some Constants
     val USERS="users"
     val USER_SIGN_IN_MOBILE_VERIFICATION="useer_sign_in_mobile_verification"
     val USER_SIGN_IN_MOBILE_VERIFICATION_OTP="useer_sign_in_mobile_verification_otp"
@@ -13,5 +17,7 @@ object Constants {
     val NAME="name"
     val IMAGE="image"
     val MOBILE_NO="mobileNo"
+
+
 
 }

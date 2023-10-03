@@ -13,8 +13,9 @@ import com.google.firebase.ktx.Firebase
 
 
 class FireStoreClass {
-
+   // instance
     val db = Firebase.firestore
+    // this fn will add data to firebase/ firestore in "users"
     fun AddUserToFireBase(user: User)
     {
         db.collection(Constants.USERS)
@@ -27,7 +28,7 @@ class FireStoreClass {
                 Log.d("Main","Failed to add on fireStore")
             }
     }
-
+    // getting user data from firestore
     fun RetrieveDataFromFireBase(activity : Activity)
     {
 
@@ -58,6 +59,7 @@ class FireStoreClass {
                 Log.d("Main","Failed to add on fireStore")
             }
     }
+    // update data back to firestroe for users with their id
     fun UpdateDataToFireBase(activity:Activity,mhm:HashMap<String,Any>)
     {
 
@@ -77,7 +79,7 @@ class FireStoreClass {
                 Log.d("Main","Failed to add on fireStore")
             }
     }
-
+    // getting di for curently login user
     fun getCurrentUserId():String
     {
         val mAuth=FirebaseAuth.getInstance()
