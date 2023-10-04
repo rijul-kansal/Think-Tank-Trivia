@@ -59,4 +59,9 @@
         <dimen name="btn_padding">16dp</dimen>
         <dimen name="btn_margin_top">630dp</dimen>
         <dimen name="btn_textSize">32dp</dimen>
+
+
+        // QuestionTypeChooserActivity
+        <dimen name="MainHt">1500dp</dimen>
+        <dimen name="Grid_view_Padding">16dp</dimen>
 </resources>

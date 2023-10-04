@@ -1,7 +1,7 @@
 package com.example.thinktanktrivia.Utils
 
-import android.view.Display.Mode
-import com.example.thinktanktrivia.Model.CatogeryModel
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 object Constants {
     // Some Constants
@@ -17,7 +17,18 @@ object Constants {
     val NAME="name"
     val IMAGE="image"
     val MOBILE_NO="mobileNo"
+    val TOTAL_SCORE="totalscore"
+    val CAT="cat"
+    val AMT="amt"
+    val Type="type"
+    val Diff="diff"
 
-
+    const val BASE_URL= "https://opentdb.com"
+    fun getInstance() : Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
 
 }

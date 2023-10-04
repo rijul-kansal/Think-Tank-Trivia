@@ -24,9 +24,8 @@
 
     <string name="nav_header_text">Your Name</string>
     <string name="Update">Update</string>
-    
-    <string name="LetsPlay">Let\'s Play</string>
 
+    <string name="LetsPlay">Let\'s Play</string>
 
 
     <string name="GK">GK</string>
@@ -54,4 +53,15 @@
     <string name="JapAAM">Anime and Manga</string>
     <string name="Cartton">Cartoon</string>
 
+    <string name="Easy">Easy</string>
+    <string name="Medium">Medium</string>
+    <string name="Hard">Hard</string>
+    <string name="Enter_your_amount">Enter No of Question</string>
+    <string name="LetsBegin">Let\'s Begin</string>
+    <string name="Multiple">Multiple</string>
+    <string name="True_False">True False</string>
+    <string name="Choose">Choose Options</string>
+    <string name="chooseOneCat">Chooce One Category</string>
+    <string name="choose_one_diff">Choose One Difficulty</string>
+    <string name="choose_one_type">Choose One Type</string>
 </resources>
