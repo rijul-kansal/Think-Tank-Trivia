@@ -26,7 +26,7 @@ class QuestionDisplay : BaseActivity(),View.OnClickListener {
     var valueDiff=-1
     var valueType=-1
     var valueAmt:Int=0
-
+    var realcat:String=""
     var Category=0
     var Diff:String=""
     var type:String=""
@@ -120,6 +120,7 @@ class QuestionDisplay : BaseActivity(),View.OnClickListener {
                         val responseData = result.body()
                         if (responseData != null) {
                             binding.Category.text=responseData.results[0].category
+                            realcat=responseData.results[0].category
                         }
                         if (responseData != null) {
                             var s=responseData.results[0].difficulty
@@ -225,6 +226,10 @@ class QuestionDisplay : BaseActivity(),View.OnClickListener {
                 {
                    var intent= Intent(this@QuestionDisplay,FinishActivity::class.java)
                     intent.putExtra(Constants.TOTAL_SCORE,totalcorr)
+                    intent.putExtra(Constants.TOTALQ,Amount)
+                    intent.putExtra(Constants.CAT2,realcat)
+                    intent.putExtra(Constants.TYPE2,type)
+                    intent.putExtra(Constants.DIFF2,Diff)
                     startActivity(intent)
                     finish()
                 }

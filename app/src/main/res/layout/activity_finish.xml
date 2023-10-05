@@ -1,9 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ic_background"
+    android:orientation="vertical"
     tools:context=".Activity.FinishActivity">
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_bar_size">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/very_very_light_orange"
+            android:minHeight="?attr/actionBarSize"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
+    </com.google.android.material.appbar.AppBarLayout>
+    <LinearLayout
+        android:layout_marginTop="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center|top"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/congoandname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Congratulations Rijul"
+            android:textSize="32dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_margin="16dp"
+            android:gravity="center"/>
+            <ImageView
+                android:src="@drawable/baseline_done_24"
+                android:gravity="center"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:background="@drawable/circular_bgf"/>
+            <TextView
+                android:id="@+id/Score"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Your Score is 10/20"
+                android:textSize="32dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_margin="16dp"
+                android:gravity="center"/>
+        <TextView
+            android:background="@drawable/sign_in_btn_bg"
+            android:id="@+id/FinishBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Finish"
+            android:textSize="32dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_margin="16dp"
+            android:gravity="center"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</LinearLayout>
