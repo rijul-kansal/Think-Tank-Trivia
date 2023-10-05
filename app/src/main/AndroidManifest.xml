@@ -19,33 +19,28 @@
         tools:targetApi="31">
         <activity
             android:name=".Activity.FinishActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".Activity.QuestionDisplay"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".Activity.QuestionTypeChooserActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".Activity.UpdateProfileActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".LoginActivity.OtpVerificationActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".LoginActivity.MobileVerificationActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
-        <activity
-            android:name=".LoginActivity.GoogleSignInActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LoginActivity.OptActivity"
-            android:exported="false"
-            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
-        <activity
-            android:name=".LoginActivity.PhoneCallActivity"
-            android:exported="false"
-            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
         <activity
             android:name=".Utils.BaseActivity"
             android:exported="false"
@@ -76,7 +71,6 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

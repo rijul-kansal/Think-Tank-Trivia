@@ -9,7 +9,7 @@
     tools:context=".Activity.IntroActivity">
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/app_bar_size">
+        android:layout_height="@dimen/app_bar_size_56dp">
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -20,13 +20,13 @@
             tools:layout_editor_absoluteY="0dp" />
     </com.google.android.material.appbar.AppBarLayout>
     <androidx.cardview.widget.CardView
-        android:layout_marginTop="@dimen/card_view_margin_top"
+        android:layout_marginTop="@dimen/margin_top_64dp"
         android:layout_width="match_parent"
         app:cardCornerRadius="@dimen/card_view_corner_radius"
-        android:elevation="@dimen/card_view_elivation"
+        android:elevation="@dimen/card_view_elevation"
         android:layout_height="wrap_content">
         <LinearLayout
-            android:padding="@dimen/linear_layout_padding"
+            android:padding="@dimen/linear_layout_padding_16dp"
             android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

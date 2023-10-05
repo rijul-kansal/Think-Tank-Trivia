@@ -9,7 +9,7 @@
     tools:context=".Activity.FinishActivity">
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/app_bar_size">
+        android:layout_height="@dimen/app_bar_size_56dp">
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -20,7 +20,7 @@
             tools:layout_editor_absoluteY="0dp" />
     </com.google.android.material.appbar.AppBarLayout>
     <LinearLayout
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="@dimen/margin_top_64dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center|top"
@@ -30,26 +30,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Congratulations Rijul"
-            android:textSize="32dp"
+            android:textSize="@dimen/tv_size_32sp"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:layout_margin="16dp"
+            android:layout_margin="@dimen/cardview_margin_top"
             android:gravity="center"/>
             <ImageView
                 android:src="@drawable/baseline_done_24"
                 android:gravity="center"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_width="@dimen/imageView_size"
+                android:layout_height="@dimen/imageView_size"
                 android:background="@drawable/circular_bgf"/>
             <TextView
                 android:id="@+id/Score"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Your Score is 10/20"
-                android:textSize="32dp"
+                android:textSize="@dimen/tv_size_32sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                android:layout_margin="16dp"
+                android:layout_margin="@dimen/cardview_margin_top"
                 android:gravity="center"/>
         <TextView
             android:background="@drawable/sign_in_btn_bg"
@@ -57,10 +57,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Finish"
-            android:textSize="32dp"
+            android:textSize="@dimen/tv_size_32sp"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:layout_margin="16dp"
+            android:layout_margin="@dimen/cardview_margin_top"
             android:gravity="center"/>
 
     </LinearLayout>

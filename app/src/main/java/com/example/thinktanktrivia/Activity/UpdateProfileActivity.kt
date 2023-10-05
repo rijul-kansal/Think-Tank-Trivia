@@ -137,7 +137,7 @@ class UpdateProfileActivity : BaseActivity() {
                     .with(this)
                     .load(mImgUri.toString())
                     .centerCrop()
-                    .placeholder(R.drawable.baseline_logout_24)
+                    .placeholder(R.drawable.baseline_person_24)
                     .into(binding.profileImage)
             }
         }
@@ -180,7 +180,7 @@ class UpdateProfileActivity : BaseActivity() {
             .with(this)
             .load(user.image)
             .centerCrop()
-            .placeholder(R.drawable.baseline_logout_24)
+            .placeholder(R.drawable.baseline_person_24)
             .into(binding.profileImage)
         binding.etName.setText(user.name)
         binding.etEmail.setText(user.email)

@@ -1,6 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    // General
+
+
+
+    // splash screen
+    <dimen name="Capital_T_margin_left_48">48dp</dimen>
+    <dimen name="Capital_T_tv_size_128sp">128sp</dimen>
+    <dimen name="tv_size_32sp">32sp</dimen>
+    <dimen name="margin_top_64dp">64dp</dimen>
+
+    // Intro screen
+    <dimen name="linear_layout_padding_16dp">16dp</dimen>
+    <dimen name="card_view_elevation">16dp</dimen>
+    <dimen name="card_view_corner_radius">16dp</dimen>
+    <dimen name="app_bar_size_56dp">56dp</dimen>
+    <dimen name="app_name_size">40dp</dimen>
+    <dimen name="app_name_margin_top">32dp</dimen>
+    <dimen name="image_height">200dp</dimen>
+    <dimen name="main_intro_textSize">12dp</dimen>
+    <dimen name="signin_margintop">24dp</dimen>
+    <dimen name="Sign_btn_textSize">32dp</dimen>
+    <dimen name="Sign_padding_top">8dp</dimen>
+    <dimen name="Sign_padding_bottom">8dp</dimen>
+    <dimen name="Sign_margin_left">8dp</dimen>
+    <dimen name="Sign_margin_right">8dp</dimen>
+    <dimen name="card_view_margin_top">64dp</dimen>
+    <dimen name="image_view_margin_top">16dp</dimen>
+    <dimen name="grid_view_margin_all">5dp</dimen>
+    <dimen name="tv_margin_all">5dp</dimen>
+    <dimen name="tv_padding">4dp</dimen>
     <dimen name="grid_view_margin_top">16dp</dimen>
-    <dimen name="horizontal_spacing">4dp</dimen>
+    <dimen name="horizontal_spacing">6dp</dimen>
     <dimen name="vertical_spacing">4dp</dimen>
+    <dimen name="imageView_size">200dp</dimen>
+    <dimen name="margin_4dp">4dp</dimen>
+    <dimen name="margin_16dp">16dp</dimen>
+
+    <!--Sign Up bg-->
+    <dimen name="cardview_margin_top">32dp</dimen>
+    <dimen name="editView_margin_start">16dp</dimen>
+    <dimen name="editView_margin_end">16dp</dimen>
+    <dimen name="editView_margin_top">64dp</dimen>
+    <dimen name="editView_margin_top2">16dp</dimen>
+    <dimen name="editView_textSize">24dp</dimen>
+    <dimen name="cardview_margin_left">4dp</dimen>
+    <dimen name="cardview_margin_right">4dp</dimen>
+    <dimen name="corner_radius_of_bg">16dp</dimen>
+    <dimen name="linear_layout_margin_top">24dp</dimen>
+    <dimen name="view_width">160dp</dimen>
+    <dimen name="view_height">2dp</dimen>
+    <dimen name="view_margin_left1">20dp</dimen>
+    <dimen name="view_margin_left2">5dp</dimen>
+    <dimen name="view_margin_right1">5dp</dimen>
+    <dimen name="view_margin_right2">20dp</dimen>
+    <dimen name="circular_img_width">45dp</dimen>
+    <dimen name="circular_img_height">45dp</dimen>
+    <dimen name="circular_img_width2">40dp</dimen>
+    <dimen name="circular_img_height2">40dp</dimen>
+    <dimen name="textsize_last1">18dp</dimen>
+
+    // Sign In Activity
+    <dimen name="cardView_marginTop">128dp</dimen>
+
+    // nav Header
+    <dimen name="nav_header_ht">200dp</dimen>
+    <dimen name="nav_header_padding">15dp</dimen>
+    <dimen name="nav_header_image_size">96dp</dimen>
+    <dimen name="nav_header_image_border_width">2dp</dimen>
+
+    // Main Activity
+    <dimen name="btn_margin">16dp</dimen>
+    <dimen name="btn_padding">16dp</dimen>
+    <dimen name="btn_margin_top">630dp</dimen>
+    <dimen name="btn_textSize">32dp</dimen>
+
+
+    // QuestionTypeChooserActivity
+    <dimen name="MainHt">1500dp</dimen>
+    <dimen name="Grid_view_Padding">16dp</dimen>
 </resources>

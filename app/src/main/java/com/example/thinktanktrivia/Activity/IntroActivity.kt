@@ -16,9 +16,11 @@ class IntroActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         SetUpToolbar()
+        // take us to the signing activity
         binding.SignIn.setOnClickListener {
             startActivity(Intent(this, SignInActivity::class.java))
         }
+        // take us to the sign up activity
         binding.SignUp.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
         }
@@ -28,11 +30,15 @@ class IntroActivity : AppCompatActivity() {
     {
         setSupportActionBar(binding.toolbar)
         if (supportActionBar != null) {
+            // displaying arrow
             getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
             getSupportActionBar()?.setDisplayShowHomeEnabled(true)
+            // custom arrow design
             getSupportActionBar()?.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_ios_24)
+            // setting title for tolbar
             supportActionBar!!.title=resources.getString(R.string.Intro_string)
         }
+        // back navigation when we click back btn present on toolbar
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()
         }

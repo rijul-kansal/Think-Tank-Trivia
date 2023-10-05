@@ -30,6 +30,7 @@ class FireStoreClass {
                 Log.d("Main","Failed to add on fireStore")
             }
     }
+    // this fn will add game data to  fire store
     fun AddGameDataToFireBase(res: ResultsModel)
     {
         db.collection(Constants.USERSDATA)
@@ -78,48 +79,40 @@ class FireStoreClass {
                 Log.d("Main","Failed to add on fireStore")
             }
     }
+    // Retrieving game data from firestore
     fun RetrieveGameDataFromFireBase(activity : Activity)
     {
-        try {
-            db.collection(Constants.USERSDATA)
-                .document(getCurrentUserId())
-                .get()
-                .addOnSuccessListener {task->
-                    try {
-                    Log.d("Main","Success to Retrieve on fireStore ${task.toObject(ResultsModel::class.java)?.res}")
-                    }catch (e:Exception)
-                    {
-                        Log.d("Main",e.message.toString())
-                    }
-                    val resultsModel = task.toObject(ResultsModel::class.java)
-                    Log.d("Main","1")
-                    if (resultsModel != null) {
-                        val dataRes = resultsModel.res
-//                        Log.d("Main", "Success to Retrieve on Firestore ${resultsModel.toString()}")
-
-                        when (activity) {
-                            is FinishActivity -> {
-                                activity.RetrieveGameData(dataRes)
-                            }
+        db.collection(Constants.USERSDATA)
+            .document(getCurrentUserId())
+            .get()
+            .addOnSuccessListener {task->
+                Log.d("Main","Success to Retrieve on fireStore ${task.toObject(ResultsModel::class.java)?.res}")
+                val resultsModel = task.toObject(ResultsModel::class.java)
+                Log.d("Main","1")
+                if (resultsModel != null) {
+                    val dataRes = resultsModel.res
+                    when (activity) {
+                        is FinishActivity -> {
+                            activity.RetrieveGameData(dataRes)
                         }
-                    }
-                    else {
-                        Log.d("Main", "Data is null")
-                        when (activity) {
-                            is FinishActivity -> {
-                                activity.AddDataFirstTimeToFireStore()
-                            }
+                        is MainActivity->
+                        {
+                            activity.RetrieveGameData(dataRes)
                         }
                     }
                 }
-                .addOnFailureListener{
-                    Log.d("Main","Failed to Retrieve on fireStore")
+                else {
+                    Log.d("Main", "Data is null")
+                    when (activity) {
+                        is FinishActivity -> {
+                            activity.AddDataFirstTimeToFireStore()
+                        }
+                    }
                 }
-        }catch (e:Exception)
-        {
-            Log.d("Main",e.message.toString())
-        }
-
+            }
+            .addOnFailureListener{
+                Log.d("Main","Failed to Retrieve on fireStore")
+            }
     }
     // update data back to firestroe for users with their id
     fun UpdateDataToFireBase(activity:Activity,mhm:HashMap<String,Any>)

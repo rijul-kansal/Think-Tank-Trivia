@@ -13,11 +13,11 @@ class SplashScreen1 : AppCompatActivity() {
         setContentView(R.layout.activity_splash_screen1)
 
         // Code For Getting Full window Size
-        getWindow().setFlags(
+        window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
-        // Code For Delay on this activity for 1.5 second
+        // Code For Delay on this activity for 1.5 second and starting splash screen 2 activity after 1.5 second
         Handler().postDelayed({
             startActivity(Intent(this, SplashScreen2::class.java))
             finish()

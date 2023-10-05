@@ -29,19 +29,23 @@ class SignUpActivity : BaseActivity() {
         binding= ActivitySignUpBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
         SetUpToolbar()
+        // Firebase instance
         mAuth = FirebaseAuth.getInstance()
 
-
+       // signing new user using email and password
         binding.SignUpBtn.setOnClickListener {
             registerNewUser()
         }
+        // signing up using google ids
         binding.circularImageGoogle.setOnClickListener { signIn() }
 
+        // signing up using mobile no
         binding.circularImgPhone.setOnClickListener {
             startActivity(Intent(this,MobileVerificationActivity::class.java))
         }
-
+       // going to sign in  activity
         binding.LoginBtn.setOnClickListener {
             startActivity(Intent(this,SignInActivity::class.java))
             finish()
@@ -68,7 +72,7 @@ class SignUpActivity : BaseActivity() {
         // show the visibility of progress bar to show loading
         showProgressBar(this@SignUpActivity,"")
 
-        // Take the value of two edit texts in Strings
+        // Take the value of the  edittext in Strings
         val email: String
         val password: String
         val name:String
@@ -88,22 +92,25 @@ class SignUpActivity : BaseActivity() {
             Toast(this@SignUpActivity,"Please enter name!!")
             return
         }
+        // checking is pattern is matching or not
         if (Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
         } else {
             Toast(this@SignUpActivity,"Please Enter valid Email address")
             return
         }
 
-        //Registering User
+        //Registering User using email and password
         mAuth
             .createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
+                    // if successfully created a new user then store his name id and email into user model
                     val user= mAuth.currentUser?.let { User(name=name,id= it.uid,email=email) }
-                    // is Successfully Reg then send email verification link
+                    // if successfully created a new user then store his name id and email into Firestore
                     if (user != null) {
                         FireStoreClass().AddUserToFireBase(user)
                     }
+                    // is Successfully Reg then send email verification link
                     sendVerificationEmail()
                     Toast(this@SignUpActivity,"Registered Successfully")
                     // hide the progress bar
@@ -118,14 +125,19 @@ class SignUpActivity : BaseActivity() {
     }
     // Sending verification link to the new user
     private fun sendVerificationEmail() {
+        // getting current user
         val user = FirebaseAuth.getInstance().currentUser
+        // sending verification link to new user who sign up using email and pass
         user!!.sendEmailVerification()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
+                    // after sending email signout the present user and take him to the main activity
                     FirebaseAuth.getInstance().signOut()
                     startActivity(Intent(this@SignUpActivity, MainActivity::class.java))
                     finish()
                 } else {
+                    //This line disables the transition animation when finishing the current activity.
+                    // It sets both the enter and exit animations to zero, effectively making the transition instant.
                     overridePendingTransition(0, 0)
                     finish()
                     overridePendingTransition(0, 0)
@@ -135,6 +147,7 @@ class SignUpActivity : BaseActivity() {
     }
     // Sign up using Google
     private fun signIn() {
+        // create instance of google sign in options  with default sign in options
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()

@@ -111,38 +111,70 @@ class QuestionDisplay : BaseActivity(),View.OnClickListener {
         populateData(item[idx].question,arrlis[0],arrlis[1],arrlis[2],arrlis[3])
     }
     private fun getdata() {
-        val matchApi = com.example.thinktanktrivia.Utils.Constants.getInstance().create(ApiService::class.java)
-        lifecycleScope.launch(Dispatchers.IO) {
-            try {
-                val result = matchApi.getSeries(Amount, Category, Diff, type)
-                if (result.isSuccessful && result.body() != null) {
-                    withContext(Dispatchers.Main) {
-                        val responseData = result.body()
-                        if (responseData != null) {
-                            binding.Category.text=responseData.results[0].category
-                            realcat=responseData.results[0].category
-                        }
-                        if (responseData != null) {
-                            var s=responseData.results[0].difficulty
-                            binding.difficulty.text= s[0].toUpperCase() +s.substring(1,s.length)
-                        }
-                        Log.e("rijul", responseData.toString())
-                        for (i in 0 until responseData!!.results.size) {
+        showProgressBar(this@QuestionDisplay,"")
+        binding.Question.visibility=View.INVISIBLE
+        binding.Option1.visibility=View.INVISIBLE
+        binding.Option2.visibility=View.INVISIBLE
+        binding.Option3.visibility=View.INVISIBLE
+        binding.Option4.visibility=View.INVISIBLE
+        binding.difficulty.visibility=View.INVISIBLE
+        binding.Category.visibility=View.INVISIBLE
+       if(checkForInternet(this@QuestionDisplay)==true) {
+           val matchApi = com.example.thinktanktrivia.Utils.Constants.getInstance()
+               .create(ApiService::class.java)
+           lifecycleScope.launch(Dispatchers.IO) {
+               try {
+                   val result = matchApi.getSeries(Amount, Category, Diff, type)
+                   if (result.isSuccessful && result.body() != null) {
+                       withContext(Dispatchers.Main) {
+                           val responseData = result.body()
+                           if (responseData != null) {
+                               binding.Category.text = responseData.results[0].category
+                               realcat = responseData.results[0].category
+                           }
+                           if (responseData != null) {
+                               var s = responseData.results[0].difficulty
+                               binding.difficulty.text =
+                                   s[0].toUpperCase() + s.substring(1, s.length)
+                           }
+                           Log.e("rijul", responseData.toString())
+                           for (i in 0 until responseData!!.results.size) {
 //                            Toast.makeText(this@QuestionDisplay, responseData.results[i].correct_answer.toString(), Toast.LENGTH_LONG).show()
-                            item.add(responseData.results[i])
-                        }
-                        Question()
-                        Toast.makeText(this@QuestionDisplay, "Data loaded successfully  ${item.size}", Toast.LENGTH_LONG).show()
-                    }
-                } else {
-                    withContext(Dispatchers.Main) {
-                        Toast.makeText(this@QuestionDisplay, "API request failed", Toast.LENGTH_LONG).show()
-                    }
-                }
-            } catch (e: Exception) {
-                Log.e("rijul", "Exception: ${e.message}")
-            }
-        }
+                               item.add(responseData.results[i])
+                           }
+                           cancelProgressBar()
+                           binding.Question.visibility = View.VISIBLE
+                           binding.Option1.visibility = View.VISIBLE
+                           binding.Option2.visibility = View.VISIBLE
+                           binding.Option3.visibility = View.VISIBLE
+                           binding.Option4.visibility = View.VISIBLE
+                           binding.difficulty.visibility = View.VISIBLE
+                           binding.Category.visibility = View.VISIBLE
+                           Question()
+                           Toast.makeText(
+                               this@QuestionDisplay,
+                               "Data loaded successfully  ${item.size}",
+                               Toast.LENGTH_LONG
+                           ).show()
+                       }
+                   } else {
+                       withContext(Dispatchers.Main) {
+                           Toast.makeText(
+                               this@QuestionDisplay,
+                               "API request failed",
+                               Toast.LENGTH_LONG
+                           ).show()
+                       }
+                   }
+               } catch (e: Exception) {
+                   Log.e("rijul", "Exception: ${e.message}")
+               }
+           }
+       }
+        else
+       {
+          Toast(this@QuestionDisplay,"Please Switch On Your Internet")
+       }
     }
 
     private fun checkForInternet(context: Context): Boolean

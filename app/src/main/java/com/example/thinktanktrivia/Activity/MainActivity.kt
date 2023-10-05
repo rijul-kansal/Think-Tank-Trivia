@@ -2,6 +2,7 @@ package com.example.thinktanktrivia.Activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
@@ -10,8 +11,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.thinktanktrivia.Adapter.ResultShownAdapter
 import com.example.thinktanktrivia.FireBase.FireStoreClass
+import com.example.thinktanktrivia.Model.Res
 import com.example.thinktanktrivia.Model.User
 import com.example.thinktanktrivia.R
 import com.example.thinktanktrivia.Utils.Constants
@@ -29,7 +34,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-
         drawerLayout = findViewById(R.id.drawer_layout)
         navView = findViewById(R.id.nav_view)
 
@@ -46,6 +50,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         letsplay.setOnClickListener {
             startActivity(Intent(this,QuestionTypeChooserActivity::class.java))
         }
+        FireStoreClass().RetrieveGameDataFromFireBase(this@MainActivity)
+
     }
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -74,7 +80,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             .with(this)
             .load(user.image)
             .centerCrop()
-            .placeholder(R.drawable.baseline_logout_24)
+            .placeholder(R.drawable.baseline_person_24)
             .into(hView.findViewById(R.id.profile_image))
     }
     // if updated from update activity then update here also
@@ -85,5 +91,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 FireStoreClass().RetrieveDataFromFireBase(this)
             }
         }
+    }
+
+    fun RetrieveGameData(user:ArrayList<Res>)
+    {
+        setUpRecycleView(user)
+    }
+    private fun setUpRecycleView(items:ArrayList<Res>) {
+        var rv = findViewById<RecyclerView>(R.id.recycleView)
+        rv.layoutManager = LinearLayoutManager(this)
+        rv.setHasFixedSize(true)
+        val ItemAdapter = ResultShownAdapter(items)
+        rv.adapter = ItemAdapter
     }
 }

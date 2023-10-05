@@ -33,7 +33,7 @@ class QuestionTypeChooserActivity : BaseActivity() {
     var TypeFlag=0
     var AmountFlag=0
 
-
+   // final value
     var valueCat=0
     var valueDiff=-1
     var valueType=-1

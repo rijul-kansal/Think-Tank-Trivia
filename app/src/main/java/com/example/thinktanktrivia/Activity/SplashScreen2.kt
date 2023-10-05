@@ -9,6 +9,7 @@ import com.example.thinktanktrivia.R
 import com.google.firebase.auth.FirebaseAuth
 
 class SplashScreen2 : AppCompatActivity() {
+    // FireBase variable
     lateinit var mAuth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,8 +28,7 @@ class SplashScreen2 : AppCompatActivity() {
 
         // Generate Delay of 1.5 second
         Handler().postDelayed({
-
-            // if user is there and uid is algo there then login to main activity else login to intro activity
+            // if user is there and uid is also there then login to main activity else login to intro activity
             if(user!=null) {
                  if(user.uid.isNotEmpty()) {
                      startActivity(Intent(this, MainActivity::class.java))
