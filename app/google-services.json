@@ -1,44 +1,26 @@
 {
   "project_info": {
-    "project_number": "436608640094",
-    "project_id": "think-tank-trivia",
-    "storage_bucket": "think-tank-trivia.appspot.com"
+    "project_number": "635944903031",
+    "project_id": "dummy-project-90151",
+    "storage_bucket": "dummy-project-90151.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:436608640094:android:17e7f813ce35a4880580cf",
+        "mobilesdk_app_id": "1:635944903031:android:9c3280ffc19d774d868172",
         "android_client_info": {
           "package_name": "com.example.thinktanktrivia"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "436608640094-riulab71nlnc64ki9d4llch1ge2nrda0.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.thinktanktrivia",
-            "certificate_hash": "9baa070c0d9a697c50120d0165b762d8e1853cac"
-          }
-        },
-        {
-          "client_id": "436608640094-9hlguhi0mej00fnrbd4okeq4dhlu8lr2.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDNUOqmvbMLVZ2MF1jfhEtwQIs2NJVsEwM"
+          "current_key": "AIzaSyBxbUrTwg8AJRv2RcYUBYE0JWqEvsxbMio"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "436608640094-9hlguhi0mej00fnrbd4okeq4dhlu8lr2.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

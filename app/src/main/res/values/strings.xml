@@ -23,7 +23,7 @@
     <string name="choose_one_type">Choose One Type</string>
     <string name="Enter_your_amount">Enter No of Questions</string>
     <string name="LetsBegin">Let\'s Begin</string>
-
+    <string name="default_web_client_id">1234</string>
     <string name="GK">GK</string>
     <string name="Books">Books</string>
     <string name="Film">Film</string>
